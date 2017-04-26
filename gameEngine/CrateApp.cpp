@@ -78,6 +78,10 @@ private:
 	void UpdateMaterialCBs(const GameTimer& gt);
 	void UpdateMainPassCB(const GameTimer& gt);
 
+	float changeRed(float); //OISIN
+	float changeGreen(float);
+	float changeBlue(float);
+
 	void LoadTextures();
 	void BuildRootSignature();
 	void BuildDescriptorHeaps();
@@ -136,11 +140,8 @@ private:
 	float lightAngle = 0.0f; //Starts at 0, x is highest in sky. Ambient should be brightest
 	float angleIncrease = 0.001f;//the angleIncrease per frame //Changing this will change the rate of the day/night cycle.
 	XMFLOAT4 ambientStrength = {0.5f, 0.5f, 0.7f, 1.0f}; //Starts at brightest //Changing this won't affect anything 
-	XMFLOAT4 ambientIncrease = {(ambientStrength.x*angleIncrease), (ambientStrength.y * angleIncrease), (ambientStrength.z * angleIncrease), (ambientStrength.w * angleIncrease)}; // so if +0.01 every frame then it will take 100 frames to reach 1.0f
-
-	
-
-	//Locking dps to monitor refresh rate 
+	XMFLOAT4 ambientIncrease = {(ambientStrength.x*angleIncrease), (ambientStrength.y * angleIncrease), (ambientStrength.z * angleIncrease), (ambientStrength.w * angleIncrease)}; 
+	// so if +0.01 every frame then it will take 100 frames to reach 1.0f
 };
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE prevInstance,
@@ -279,6 +280,33 @@ void CrateApp::Update(const GameTimer& gt)
 
 }
 
+float CrateApp::changeRed(float r)
+{
+	//OISIN
+	//Method that transitions between colours. The parameter given should be 3 floats from a 4float. They represent the increase in RBG that has to take place in 0.50 frames 
+	//Angle increase per frame is 0.001f. Therefore it takes 5000 frames to change lightAngle by 0.50
+	//So this method when it's called, should change the background colour by rDifference/5000, gDifference/5000, bDifference/5000
+
+	float cr = 5000 / r;
+	return cr; //This is what the float4 should = after the method
+}
+
+float CrateApp::changeGreen(float g)
+{
+	//OISIN
+
+	float cg = 5000 / g;
+	return cg; //This is what the float4 should = after the method
+}
+
+float CrateApp::changeBlue(float b)
+{
+	//OISIN
+
+	float cb = 5000 / b;
+	return cb; //This is what the float4 should = after the method 
+}
+
 void CrateApp::Draw(const GameTimer& gt)
 {
 	auto cmdListAlloc = mCurrFrameResource->CmdListAlloc;
@@ -300,32 +328,61 @@ void CrateApp::Draw(const GameTimer& gt)
 
 	//The following code changes the background to different colours according to the value of "lightAngle" (represents the time of day)
 	//Make it better by incremenentally changing the colour every frame, instead of just changing everything at set intervals.
+	
+	//DIFFERENCES -- THE DIFFERENCE BETWEEN ONE COLOUR AND THE NEXT COLOUR 
+	// - MEANS THAT THE FLOAT OF THE R, B OR G WILL HAVE TO DECREASE EACH FRAME TO BECOME THE NEXT COLOUR
+	// + MEANS IT WILL HAVE TO INCREASE EACH FRAME TO BECOME THE NEXT COLOUR
+	
+	//LIGHTGOLDENRODYELLOW to DEEPSKYBLUE ===== {-0.980392218f, -0.231372595F, +0.176470518F}
+	//DEEPSKYBLUE to DARKCYAN  ===== { 0f, -0.203921557f, -0.454901934f}
+	//DARKCYAN TO BLACK  ===== { 0f, -0.545098066f, -0.545098066f}
+	//BLACK TO LIGHTGOLDENYELLOW  ===== {+0.980392218f, +0.980392218f, +0.823529482f}
+
+
+	//INSTEAD OF THE BELOW HAVE SOMETHING LIKE THE FOLLOWING :::::
+	/*
+	if (lightAngle >= -0.75f && lightAngle < (-0.25f))
+	{
+		//RUN METHODS FOR THE DIFFERENCES THAT HAVE TO BE MADE DURING THIS IF
+
+		XMFLOAT4 ABC = { changeRed(-0.980392218f),changeGreen(-0.231372595F),changeBlue(0.176470518F) ,1.0f}; 
+
+		//will change the colour
+		mCommandList->ClearRenderTargetView(CurrentBackBufferView(), Colors::LightGoldenrodYellow, 0, nullptr); // {0.980392218f, 0.980392218f, 0.823529482f, 1.000000000f}
+		// Clear the back buffer and depth buffer.
+		mCommandList->ClearDepthStencilView(DepthStencilView(), D3D12_CLEAR_FLAG_DEPTH | D3D12_CLEAR_FLAG_STENCIL, 1.0f, 0, 0, nullptr);
+	}
+
+	*/
+
+
+	//EACH OF THESE TRANSITIONS SHOULD TAKE PLACE IN THE SAME NUMBER OF FRAMES IT TAKES FOR THE lightAngle to change 0.50f
 
 	if (lightAngle >= -0.75f && lightAngle < (-0.25f)) //MORNING WILL BE -0.75 TO -0.25
 	{
 		//will change the colour
-		mCommandList->ClearRenderTargetView(CurrentBackBufferView(), Colors::OrangeRed, 0, nullptr);
+		mCommandList->ClearRenderTargetView(CurrentBackBufferView(), Colors::LightGoldenrodYellow, 0, nullptr); // {0.980392218f, 0.980392218f, 0.823529482f, 1.000000000f}
 		// Clear the back buffer and depth buffer.
 		mCommandList->ClearDepthStencilView(DepthStencilView(), D3D12_CLEAR_FLAG_DEPTH | D3D12_CLEAR_FLAG_STENCIL, 1.0f, 0, 0, nullptr);
 	}
 	if (lightAngle >= -0.25f && lightAngle < 0.25f) //MIDDAY WILL BE -0.25 TO 0.25 
 	{
 		//will change the colour
-		mCommandList->ClearRenderTargetView(CurrentBackBufferView(), Colors::Blue, 0, nullptr);
+		mCommandList->ClearRenderTargetView(CurrentBackBufferView(), Colors::DeepSkyBlue, 0, nullptr); //{0.000000000f, 0.749019623f, 1.000000000f, 1.000000000f}
 		// Clear the back buffer and depth buffer.
 		mCommandList->ClearDepthStencilView(DepthStencilView(), D3D12_CLEAR_FLAG_DEPTH | D3D12_CLEAR_FLAG_STENCIL, 1.0f, 0, 0, nullptr);
 	}
 	if (lightAngle >= 0.25f && lightAngle < 0.75f) //DAWN WILL BE 0.25 TO -0.75
 	{
 		//will change the colour
-		mCommandList->ClearRenderTargetView(CurrentBackBufferView(), Colors::DarkBlue, 0, nullptr);
+		mCommandList->ClearRenderTargetView(CurrentBackBufferView(), Colors::DarkCyan, 0, nullptr); //{0.000000000f, 0.545098066f, 0.545098066f, 1.000000000f}
 		// Clear the back buffer and depth buffer.
 		mCommandList->ClearDepthStencilView(DepthStencilView(), D3D12_CLEAR_FLAG_DEPTH | D3D12_CLEAR_FLAG_STENCIL, 1.0f, 0, 0, nullptr);
 	}
 	if (lightAngle >= 0.75f || lightAngle < (-0.75f)) //MIDNIGHT WILL BE 0.75 TO -0.75 
 	{
 		//will change the colour
-		mCommandList->ClearRenderTargetView(CurrentBackBufferView(), Colors::Black, 0, nullptr);
+		mCommandList->ClearRenderTargetView(CurrentBackBufferView(), Colors::Black, 0, nullptr); //{0.000000000f, 0.000000000f, 0.000000000f, 1.000000000f}
 		// Clear the back buffer and depth buffer.
 		mCommandList->ClearDepthStencilView(DepthStencilView(), D3D12_CLEAR_FLAG_DEPTH | D3D12_CLEAR_FLAG_STENCIL, 1.0f, 0, 0, nullptr);
 	}
