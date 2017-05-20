@@ -1,0 +1,7 @@
+<<<<<<< HEAD:engine/x64/Debug/Lab 6 - .99BAD649.tlog/Lab 6 - Textured crate.lastbuildstate
+#TargetFrameworkVersion=v4.0:PlatformToolSet=v140:EnableManagedIncrementalBuild=false:VCToolArchitecture=Native32Bit:WindowsTargetPlatformVersion=10.0.14393.0
+Debug|x64|C:\Users\cgf15coo\Desktop\Crate\|
+=======
+#TargetFrameworkVersion=v4.0:PlatformToolSet=v141:EnableManagedIncrementalBuild=false:VCToolArchitecture=Native32Bit:WindowsTargetPlatformVersion=10.0.14393.0
+Debug|x64|C:\Oisin\DirectX12_MinecraftClone\gameEngine\|
+>>>>>>> 42c38fff5279f1c7d2ef928bf563224f842ee870:gameEngine/x64/Debug/Lab 6 - .99BAD649.tlog/Lab 6 - Textured crate.lastbuildstate

@@ -1,0 +1,4 @@
+﻿  CrateApp.cpp
+c:\users\cgf15coo\desktop\crate\crateapp.cpp(170): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+  Crate.vcxproj -> C:\Users\cgf15coo\Desktop\Crate\x64\Debug\Lab 6 - Textured crate.exe
+  Crate.vcxproj -> C:\Users\cgf15coo\Desktop\Crate\x64\Debug\Lab 6 - Textured crate.pdb (Full PDB)

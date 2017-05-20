@@ -1,0 +1,21 @@
+﻿  Camera.cpp
+  CrateApp.cpp
+CrateApp.cpp(163): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+CrateApp.cpp(321): warning C4244: '-=': conversion from 'double' to 'float', possible loss of data
+CrateApp.cpp(322): warning C4244: '-=': conversion from 'double' to 'float', possible loss of data
+CrateApp.cpp(323): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+CrateApp.cpp(331): warning C4244: '-=': conversion from 'double' to 'float', possible loss of data
+CrateApp.cpp(332): warning C4244: '-=': conversion from 'double' to 'float', possible loss of data
+CrateApp.cpp(341): warning C4244: '-=': conversion from 'double' to 'float', possible loss of data
+CrateApp.cpp(342): warning C4244: '-=': conversion from 'double' to 'float', possible loss of data
+CrateApp.cpp(350): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+CrateApp.cpp(351): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+CrateApp.cpp(352): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+  FrameResource.cpp
+  Generating code
+  69 of 2971 functions ( 2.3%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
+    56 functions had inline decision re-evaluated but remain unchanged
+  Finished generating code
+  Crate.vcxproj -> E:\Crate\Crate\x64\Release\Lab 6 - Textured crate.exe
+  Crate.vcxproj -> E:\Crate\Crate\x64\Release\Lab 6 - Textured crate.pdb (Full PDB)
