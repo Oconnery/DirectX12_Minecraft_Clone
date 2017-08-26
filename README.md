@@ -1,4 +1,6 @@
 # DirectX12_MinecraftClone
-A Minecraft clone made for a Games Graphics Programming assignment.
+A Direct X12 graphics engine with some aspects inspired by the Minecraft engine. 
+Made for a Games Graphics Programming assignment.
 
-Developed by Oisin Connery, Connor Heath, Lee Watterson and James McGowan
+Written in C++ using Visual Studio 2017.
+Developed by Oisin Connery, Connor Heath, Lee Watterson and James McGowan.
