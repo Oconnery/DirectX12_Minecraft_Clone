@@ -2,11 +2,11 @@
 A Direct X12 graphics engine with some aspects inspired by the Minecraft engine. 
 Made for a Games Graphics Programming assignment.
 
-Features: 
+Work Done By Oisin: 
 - Animated textures (water).
-- Day/Night cycle with a changing sky, sound effects to represent the time of day and lighting. Users can easily change the day/night cycle length by changing a variable.
+- Day/Night cycle including changing sky colour, lighting and sound effects to represent the time of day.
 - A free camera.
-- etc. (to be updated)
+
 
 
 
