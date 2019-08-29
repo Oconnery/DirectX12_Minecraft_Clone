@@ -2,9 +2,9 @@
 A Direct X12 graphics engine with some aspects inspired by the Minecraft engine. 
 Made for a Games Graphics Programming assignment.
 
-Work Done By Oisin: 
+Work done by Oisin: 
 - Animated textures (water).
-- Day/Night cycle including changing sky colour, lighting and sound effects to represent the time of day.
+- Created a day/night cycle including changing sky colour, lighting and sound effects to represent the time of day.
 - A free camera.
 
 
@@ -12,4 +12,4 @@ Work Done By Oisin:
 
 
 Written in C++ using Visual Studio 2017.
-Developed by Oisin Connery, Connor Heath, Lee Watterson and James McGowan.
+Developed by Oisin Connery, Connor Heath and James McGowan.
